@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class DBUrlIdConverter {
 
@@ -63,11 +65,10 @@ public class DBUrlIdConverter {
 
     public String createUniqueID(Long id) {
         List<Integer> base62ID = convertBase10ToBase62ID(id);
-        StringBuilder uniqueURLID = new StringBuilder();
-        for (int digit: base62ID) {
-            uniqueURLID.append(indexToCharTable.get(digit));
-        }
-        return uniqueURLID.toString();
+        return base62ID.stream()
+                .mapToInt(digit -> digit)
+                .mapToObj(digit -> String.valueOf(indexToCharTable.get(digit)))
+                .collect(Collectors.joining());
     }
 
     private List<Integer> convertBase10ToBase62ID(Long id) {
@@ -81,10 +82,9 @@ public class DBUrlIdConverter {
     }
 
     public Long getDictionaryKeyFromUniqueID(String uniqueID) {
-        List<Character> base62IDs = new ArrayList<>();
-        for (int i = 0; i < uniqueID.length(); ++i) {
-            base62IDs.add(uniqueID.charAt(i));
-        }
+        List<Character> base62IDs = IntStream.range(0, uniqueID.length())
+                .mapToObj(uniqueID::charAt)
+                .collect(Collectors.toList());
         return convertBase62ToBase10ID(base62IDs);
     }
 

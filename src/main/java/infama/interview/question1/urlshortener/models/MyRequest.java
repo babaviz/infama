@@ -1,17 +1,12 @@
 package infama.interview.question1.urlshortener.models;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MyRequest {
     private String url;
 
-    @JsonCreator
-    public MyRequest() {
-    }
+    public MyRequest() {}
 
-    @JsonCreator
-    public MyRequest(@JsonProperty("url") String url) {
+    public MyRequest(String url) {
         this.url = url;
     }
 

@@ -1,4 +1,4 @@
-package infama.interview.question1.urlshortener.doa;
+package infama.interview.question1.urlshortener.dao;
 
 
 import infama.interview.question1.urlshortener.models.UrlModel;

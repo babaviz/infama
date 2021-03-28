@@ -1,7 +1,7 @@
 package infama.interview.question1.urlshortener.service;
 
 import infama.interview.question1.urlshortener.models.UrlModel;
-import infama.interview.question1.urlshortener.doa.URLRepository;
+import infama.interview.question1.urlshortener.dao.URLRepository;
 import infama.interview.question1.urlshortener.utility.DBUrlIdConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
